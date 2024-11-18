@@ -6,7 +6,7 @@ require('dotenv').config();
 const app=express().use(body_parser.json());
 
 const token=process.env.TOKEN;
-const mytoken=process.env.MYTOKEN;//prasath_token
+const mytoken=process.env.MYTOKEN;
 
 app.listen(process.env.PORT,()=>{
     console.log("webhook is listening");
@@ -31,7 +31,7 @@ app.get("/webhook",(req,res)=>{
 
 });
 
-app.post("/webhook",(req,res)=>{ //i want some 
+app.post("/webhook",(req,res)=>{ 
 
     let body_param=req.body;
 
@@ -50,7 +50,7 @@ app.post("/webhook",(req,res)=>{ //i want some
 
                console.log("phone number "+phon_no_id);
                console.log("from "+from);
-               console.log("boady param "+msg_body);
+               console.log("by param "+msg_body);
 
                axios({
                    method:"POST",
@@ -59,7 +59,7 @@ app.post("/webhook",(req,res)=>{ //i want some
                        messaging_product:"whatsapp",
                        to:from,
                        text:{
-                           body:"Hi.. I'm Prasath, your message is "+msg_body
+                           body:+msg_body
                        }
                    },
                    headers:{
@@ -78,5 +78,5 @@ app.post("/webhook",(req,res)=>{ //i want some
 });
 
 app.get("/",(req,res)=>{
-    res.status(200).send("hello this is webhook setup");
+    res.status(200).send("webhook initialised for luxmi");
 });
